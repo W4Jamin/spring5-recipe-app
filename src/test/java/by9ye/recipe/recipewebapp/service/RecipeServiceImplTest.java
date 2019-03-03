@@ -1,5 +1,7 @@
 package by9ye.recipe.recipewebapp.service;
 
+import by9ye.recipe.recipewebapp.converters.RecipeCommandToRecipe;
+import by9ye.recipe.recipewebapp.converters.RecipeToRecipeCommand;
 import by9ye.recipe.recipewebapp.model.Recipe;
 import by9ye.recipe.recipewebapp.repository.RecipeRepository;
 import org.junit.Before;
@@ -22,11 +24,18 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository,
+                recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
